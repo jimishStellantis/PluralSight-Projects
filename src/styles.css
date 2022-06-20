@@ -23,3 +23,13 @@ a:hover {
 .btn:focus, .form-control:focus{
   box-shadow: none !important;
 }
+th,
+td{
+  line-height: 40px;
+  white-space: pre-wrap;
+  width: calc(100%/6);
+}
+th:first-child,
+td:first-child{
+  text-align: center;
+}
