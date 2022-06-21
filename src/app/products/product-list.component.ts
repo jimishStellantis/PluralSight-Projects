@@ -1,17 +1,22 @@
 import { Component } from "@angular/core";
-
+import { IProduct } from "./product.interface";
+import { IProductPage } from "./product.interface";
 @Component({
     selector: 'pm-products',
     templateUrl:'./product-list.component.html'
 })
 
 export class ProductListComponent{
-    pageTitle: string = "Product List";
-    imageWidth: number = 30;
-    showImage: boolean = false;
-    listFilter: string = 'cart';
 
-    products: any[] = [
+    productPageInfo: IProductPage ={
+        pageTitle : "Product List",
+        imageWidth : 30,
+        btnWidth : 125,
+        showImage: false,
+        listFilter: 'cart'    
+      }
+
+    products: IProduct[] = [
         {
           "productId": 1,
           "productName": "Leaf Rake",
@@ -64,7 +69,7 @@ export class ProductListComponent{
         }
       ];
 
-      toggleImage(): void{
-        this.showImage= !this.showImage;
-      }
+      // toggleImage(): void{
+      //   this.productPageInfo.showImage= !this.productPageInfo.showImage;
+      // }
 }

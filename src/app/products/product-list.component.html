@@ -1,20 +1,19 @@
 <div class="card">
     <div class="card-header text-success fw-bold">
-        <h3>{{ "Title: " + pageTitle }}</h3>
-        <!-- <h1 innerText = {{ pageTitle }}></h1> -->
+        <h3>{{ "Title: " + productPageInfo.pageTitle }}</h3>
     </div>
 
     <div class="card-body">
         <div class="row">
             <div class="col-md-1">Filter By: </div>
             <div class="col-md-4">
-                <input class="form-control form-control-sm" type="text" [(ngModel)]="listFilter" />
+                <input class="form-control form-control-sm" type="text" [(ngModel)]="productPageInfo.listFilter" />
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
-                <h4>Filter By: {{ listFilter }}</h4>
+                <h4>Filter By: {{ productPageInfo.listFilter }}</h4>
             </div>
         </div>
 
@@ -25,8 +24,8 @@
                     <tr>
                         <th>
                             <!-- <button class="btn btn-primary" (click)="toggleImage()"> -->
-                            <button class="btn btn-primary" (click)="this.showImage = !this.showImage">
-                                Show Image
+                            <button class="btn btn-primary" (click)="this.productPageInfo.showImage = !this.productPageInfo.showImage" [style.width.px]="productPageInfo.btnWidth">
+                                {{productPageInfo.showImage ? 'Hide Image' : 'Show Image '}}
                             </button>
                         </th>
                         <th>Product</th>
@@ -40,7 +39,7 @@
                 <tbody>
                     <tr *ngFor="let product of products">
                         <td>
-                            <img *ngIf="showImage" [src]="product.imageUrl" [title]="product.productName" [alt]="product.productName" [style.width.px]="imageWidth" />
+                            <img *ngIf="productPageInfo.showImage" [src]="product.imageUrl" [title]="product.productName" [alt]="product.productName" [style.width.px]="productPageInfo.imageWidth" />
                         </td>
                         <td>{{product.productName}}</td>
                         <td>{{product.productCode | lowercase }}</td>
