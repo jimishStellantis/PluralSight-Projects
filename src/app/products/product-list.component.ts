@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { IProduct } from "./product.interface";
-import { IProductPage } from "./product.interface";
+import { IProduct, IProductHeader,IProductPage } from "./product.interface";
 @Component({
     selector: 'pm-products',
     templateUrl:'./product-list.component.html'
@@ -13,8 +12,26 @@ export class ProductListComponent{
         imageWidth : 30,
         btnWidth : 125,
         showImage: false,
-        listFilter: 'cart'    
+        listFilter: 'cart'
       }
+
+    productsHeadings: IProductHeader[] = [
+      {
+        "tHeadings" : "Product"
+      },
+      {
+        "tHeadings" : "Product Code"
+      },
+      {
+        "tHeadings" : "Available"
+      },
+      {
+        "tHeadings" : "Price"
+      },
+      {
+        "tHeadings" : "Star Ratings"
+      }
+    ]
 
     products: IProduct[] = [
         {

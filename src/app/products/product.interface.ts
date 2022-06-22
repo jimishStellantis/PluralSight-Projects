@@ -1,3 +1,7 @@
+export interface IProductHeader{
+    tHeadings: string
+}
+
 export interface IProduct{
     productId: number;
     productName: string;

@@ -28,11 +28,7 @@
                                 {{productPageInfo.showImage ? 'Hide Image' : 'Show Image '}}
                             </button>
                         </th>
-                        <th>Product</th>
-                        <th>Code</th>
-                        <th>Available</th>
-                        <th>Price</th>
-                        <th>5-Star Rating</th>
+                        <th *ngFor="let headings of productsHeadings">{{headings.tHeadings}}</th>
                     </tr>
                 </thead>
 
