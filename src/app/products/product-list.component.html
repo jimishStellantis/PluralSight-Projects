@@ -24,7 +24,7 @@
                     <tr>
                         <th>
                             <!-- <button class="btn btn-primary" (click)="toggleImage()"> -->
-                            <button class="btn btn-primary" (click)="this.productPageInfo.showImage = !this.productPageInfo.showImage" [style.width.px]="productPageInfo.btnWidth">
+                            <button class="btn btn-primary shadow fw-bold" (click)="this.productPageInfo.showImage = !this.productPageInfo.showImage" [style.width.px]="productPageInfo.btnWidth">
                                 {{productPageInfo.showImage ? 'Hide Image' : 'Show Image '}}
                             </button>
                         </th>
@@ -38,8 +38,8 @@
                             <img *ngIf="productPageInfo.showImage" [src]="product.imageUrl" [title]="product.productName" [alt]="product.productName" [style.width.px]="productPageInfo.imageWidth" />
                         </td>
                         <td>{{product.productName}}</td>
-                        <td>{{product.productCode | lowercase }}</td>
-                        <td>{{product.releaseDate}}</td>
+                        <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td>
+                        <td>{{product.releaseDate | date: 'dd-MM-yyyy'}}</td>
                         <td>{{product.price | currency:'INR':'symbol':'2.2-2' | uppercase}}</td>
                         <td>{{product.starRating}}</td>
                     </tr>

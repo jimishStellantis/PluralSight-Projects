@@ -8,6 +8,23 @@
         "listFilter": "cart"
     }
   ],
+  "productsHeadings":[
+    {
+      "tHeadings" : "Product"
+    },
+    {
+      "tHeadings" : "Product Code"
+    },
+    {
+      "tHeadings" : "Available"
+    },
+    {
+      "tHeadings" : "Price"
+    },
+    {
+      "tHeadings" : "Star Ratings"
+    }
+  ],
   "productSections":[
     {
       "products":[
