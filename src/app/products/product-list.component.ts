@@ -12,35 +12,59 @@ import { IProduct, IProductHeader, IProductPage } from "./product.interface";
 })
 
 export class ProductListComponent implements OnInit {
-  ngOnInit(): void {
-    console.log("In OnInit");
-  }
-
   productPageInfo: IProductPage = {
     pageTitle: "Product List",
     imageWidth: 30,
     btnWidth: 125,
     showImage: false,
-    listFilter: 'cart'
+    listFilter: ""
+  }
+
+  ngOnInit(): void {
+    // defind listFilter Property 
+    this.listFilter = 'cart';
   }
 
   productsHeadings: IProductHeader[] = [
     {
-      "tHeadings": "Product"
+      "tHeadings": "Product Name"
     },
     {
       "tHeadings": "Product Code"
     },
     {
-      "tHeadings": "Available"
+      "tHeadings": "Availability"
     },
     {
-      "tHeadings": "Price"
+      "tHeadings": "Product Price"
     },
     {
       "tHeadings": "Star Ratings"
     }
   ]
+
+  //listFilter: string = 'cart';      //we have remove this variable for use in getter & setter properties 
+  private _listFilter: string = '';
+
+  //  define getter with using get keywork followed by the name of property with parenthesis
+  get listFilter():string{    // we specify the proerty datatype i.e. :string
+    // body of the getter includes the code to process the property value before returning it
+    return this._listFilter;  // return the value of the backing variable
+  }
+
+  // define the setter
+  // setter has NO return value
+  // setter is executed anytime a value is assigned to the associated property
+  set listFilter(value:string){
+    // setter body to perform the operation when the property is changed such as filter out list of products 
+    this._listFilter = value;   // we set the value in our backing variable
+    // we add the code below
+    console.log("In setter: ", value);
+    
+  }
+
+  // create Arrow function, which filter the products array
+  filteredProducts: IProduct[] = [];
 
   products: IProduct[] = [
     {
