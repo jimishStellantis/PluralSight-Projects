@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     // defind listFilter Property 
-    this.listFilter = 'cart';
+    this.listFilter = '';
   }
 
   productsHeadings: IProductHeader[] = [
@@ -60,7 +60,13 @@ export class ProductListComponent implements OnInit {
     this._listFilter = value;   // we set the value in our backing variable
     // we add the code below
     console.log("In setter: ", value);
-    
+    this.filteredProducts = this.performFilter(value);    
+  }
+
+  performFilter(filterBy: string):IProduct[]{
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((products: IProduct) => 
+      products.productName.toLocaleLowerCase().includes(filterBy))
   }
 
   // create Arrow function, which filter the products array
