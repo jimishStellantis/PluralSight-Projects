@@ -3,7 +3,7 @@ import { Component, OnChanges, SimpleChanges } from "@angular/core";
 @Component({
     selector: 'pm-star',
     templateUrl: './star.component.html',
-    styleUrls:['./star.component.scss']
+    styleUrls:['./star.component.css']
 })
 
 export class StarComponent implements OnChanges{
