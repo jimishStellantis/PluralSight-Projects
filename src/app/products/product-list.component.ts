@@ -20,10 +20,16 @@ export class ProductListComponent implements OnInit {
     listFilter: ""
   }
 
+  onRatingclicked(message: any): void{
+    this.productPageInfo.pageTitle = 'Product List: ' + message;
+  }
+
   ngOnInit(): void {
     // defind listFilter Property 
     this.listFilter = '';
   }
+
+
 
   productsHeadings: IProductHeader[] = [
     {
@@ -134,7 +140,8 @@ export class ProductListComponent implements OnInit {
       "imageUrl": "assets/images/xbox-controller.png"
     }
   ];
-
+  
+  
   // toggleImage(): void{
   //   this.productPageInfo.showImage= !this.productPageInfo.showImage;
   // }

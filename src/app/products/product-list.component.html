@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header text-success fw-bold">
-        <h3>{{ "Title: " + productPageInfo.pageTitle }}</h3>
+        <h5>{{ productPageInfo.pageTitle }}</h5>
     </div>
 
     <div class="card-body">
@@ -42,7 +42,10 @@
                         <td>{{product.releaseDate | date: 'dd-MM-yyyy'}}</td>
                         <td>{{product.price | currency:'INR':'symbol':'2.2-2' | uppercase}}</td>
                         <td>
-                            <pm-star [rating]="product.starRating"></pm-star>
+                            <pm-star 
+                                [rating]="product.starRating"
+                                (ratingclicked)="onRatingclicked($event)"    
+                            ></pm-star>
                         </td>
                     </tr>
                 </tbody>
