@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IProduct, IProductHeader, IProductPage } from "./product.interface";
+import { ProductService } from "./product.service";
+
 @Component({
   selector: 'pm-products',
   templateUrl: './product-list.component.html',
@@ -14,23 +16,25 @@ import { IProduct, IProductHeader, IProductPage } from "./product.interface";
 export class ProductListComponent implements OnInit {
   productPageInfo: IProductPage = {
     pageTitle: "Product List",
-    imageWidth: 30,
+    imageWidth: 25,
     btnWidth: 125,
-    showImage: false,
+    showImage: true,
     listFilter: ""
+  }
+
+  constructor(private productService: ProductService){    
   }
 
   onRatingclicked(message: any): void{
     this.productPageInfo.pageTitle = 'Product List: ' + message;
   }
 
-  ngOnInit(): void {
-    // defind listFilter Property 
-    this.listFilter = '';
+
+  performFilter(filterBy: string):IProduct[]{
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((products: IProduct) => 
+      products.productName.toLocaleLowerCase().includes(filterBy))
   }
-
-
-
   productsHeadings: IProductHeader[] = [
     {
       "tHeadings": "Product Name"
@@ -47,20 +51,25 @@ export class ProductListComponent implements OnInit {
     {
       "tHeadings": "Star Ratings"
     }
-  ]
+  ];
 
   //listFilter: string = 'cart';      //we have remove this variable for use in getter & setter properties 
   private _listFilter: string = '';
 
-  //  define getter with using get keywork followed by the name of property with parenthesis
+  /**
+   * define getter with using get keywork followed by the name of property with parenthesis
+  */
   get listFilter():string{    // we specify the proerty datatype i.e. :string
     // body of the getter includes the code to process the property value before returning it
     return this._listFilter;  // return the value of the backing variable
   }
 
-  // define the setter
-  // setter has NO return value
-  // setter is executed anytime a value is assigned to the associated property
+  /**
+   *  define the setter
+      setter has NO return value
+      setter is executed anytime a value is assigned to the associated property
+   */
+  
   set listFilter(value:string){
     // setter body to perform the operation when the property is changed such as filter out list of products 
     this._listFilter = value;   // we set the value in our backing variable
@@ -69,80 +78,27 @@ export class ProductListComponent implements OnInit {
     this.filteredProducts = this.performFilter(value);    
   }
 
-  performFilter(filterBy: string):IProduct[]{
-    filterBy = filterBy.toLocaleLowerCase();
-    return this.products.filter((products: IProduct) => 
-      products.productName.toLocaleLowerCase().includes(filterBy))
-  }
+  
 
   // create Arrow function, which filter the products array
   filteredProducts: IProduct[] = [];
-
-  products: IProduct[] = [
-    {
-      "productId": 1,
-      "productName": "Leaf Rake",
-      "productCode": "GDN-0011",
-      "releaseDate": "March 19, 2021",
-      "description": "Leaf rake with 48-inch wooden handle.",
-      "price": 19.95,
-      "starRating": 3.2,
-      "imageUrl": "assets/images/leaf_rake.png"
-    },
-    {
-      "productId": 2,
-      "productName": "Garden Cart",
-      "productCode": "GDN-0023",
-      "releaseDate": "March 18, 2021",
-      "description": "15 gallon capacity rolling garden cart",
-      "price": 32.99,
-      "starRating": 4.2,
-      "imageUrl": "assets/images/garden_cart.png"
-    },
-    {
-      "productId": 5,
-      "productName": "Hammer",
-      "productCode": "TBX-0048",
-      "releaseDate": "May 21, 2021",
-      "description": "Curved claw steel hammer",
-      "price": 8.9,
-      "starRating": 4.8,
-      "imageUrl": "assets/images/hammer.png"
-    },
-    {
-      "productId": 8,
-      "productName": "Saw",
-      "productCode": "TBX-0022",
-      "releaseDate": "May 15, 2021",
-      "description": "15-inch steel blade hand saw",
-      "price": 11.55,
-      "starRating": 3.7,
-      "imageUrl": "assets/images/saw.png"
-    },
-    {
-      "productId": 10,
-      "productName": "Video Game Controller",
-      "productCode": "GMG-0042",
-      "releaseDate": "October 15, 2020",
-      "description": "Standard two-button video game controller",
-      "price": 35.95,
-      "starRating": 4.6,
-      "imageUrl": "assets/images/xbox-controller.png"
-    },
-    {
-      "productId": 11,
-      "productName": "Scessors",
-      "productCode": "GMG-0009",
-      "releaseDate": "October 15, 2021",
-      "description": "Standard Scessors",
-      "price": 54.00,
-      "starRating": 5,
-      "imageUrl": "assets/images/xbox-controller.png"
-    }
-  ];
-  
   
   // toggleImage(): void{
   //   this.productPageInfo.showImage= !this.productPageInfo.showImage;
   // }
+
+
+  products: IProduct[] = [];
+  
+  ngOnInit(): void {
+    // Set the product property
+    this.products = this.productService.getProduct();
+
+    // Set the filterProducts
+    this.filteredProducts = this.products;
+    
+    // Remove default list filter
+    // defind listFilter Property 
+    // this.listFilter = 'cart';
+  }
 }
