@@ -122,6 +122,16 @@ export class ProductListComponent implements OnInit {
       "price": 35.95,
       "starRating": 4.6,
       "imageUrl": "assets/images/xbox-controller.png"
+    },
+    {
+      "productId": 11,
+      "productName": "Scessors",
+      "productCode": "GMG-0009",
+      "releaseDate": "October 15, 2021",
+      "description": "Standard Scessors",
+      "price": 54.00,
+      "starRating": 5,
+      "imageUrl": "assets/images/xbox-controller.png"
     }
   ];
 
