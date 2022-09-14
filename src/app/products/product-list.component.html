@@ -43,8 +43,11 @@
                         <td>{{product.price | currency:'INR':'symbol':'2.2-2' | uppercase}}</td>
                         <td>
                             <pm-star 
-                                [rating]="product.starRating"
-                                (ratingclicked)="onRatingclicked($event)"    
+                                [rating]="product.starRating" 
+                                title="product.starRating"
+                                (ratingclicked)="onRatingclicked($event)" 
+                                data-toggle="tooltip" 
+                                data-placement="top" 
                             ></pm-star>
                         </td>
                     </tr>

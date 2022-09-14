@@ -1,11 +1,31 @@
 import { Injectable } from "@angular/core";
-import { IProduct } from "./product.interface";
+import { IProduct, IProductHeader, IProductPage } from "./product.interface";
 
 @Injectable({
     // root injector
     providedIn: 'root'
 })
 export class ProductService {
+    getProductsHeadings(): IProductHeader[] {
+        return [
+            {
+                "tHeadings": "Product Name"
+            },
+            {
+                "tHeadings": "Product Code"
+            },
+            {
+                "tHeadings": "Availability"
+            },
+            {
+                "tHeadings": "Product Price"
+            },
+            {
+                "tHeadings": "Star Ratings"
+            }
+        ]
+    }
+
     getProduct(): IProduct[] {
         return [
             {
@@ -55,7 +75,7 @@ export class ProductService {
                 "releaseDate": "October 15, 2020",
                 "description": "Standard two-button video game controller",
                 "price": 35.95,
-                "starRating": 4.6,
+                "starRating": 4.7,
                 "imageUrl": "assets/images/xbox-controller.png"
             },
             {

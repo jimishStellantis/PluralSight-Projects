@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
     pageTitle: "Product List",
     imageWidth: 25,
     btnWidth: 125,
-    showImage: true,
+    showImage: false,
     listFilter: ""
   }
 
@@ -29,29 +29,28 @@ export class ProductListComponent implements OnInit {
     this.productPageInfo.pageTitle = 'Product List: ' + message;
   }
 
-
   performFilter(filterBy: string):IProduct[]{
     filterBy = filterBy.toLocaleLowerCase();
     return this.products.filter((products: IProduct) => 
       products.productName.toLocaleLowerCase().includes(filterBy))
   }
-  productsHeadings: IProductHeader[] = [
-    {
-      "tHeadings": "Product Name"
-    },
-    {
-      "tHeadings": "Product Code"
-    },
-    {
-      "tHeadings": "Availability"
-    },
-    {
-      "tHeadings": "Product Price"
-    },
-    {
-      "tHeadings": "Star Ratings"
-    }
-  ];
+  // productsHeadings: IProductHeader[] = [
+  //   {
+  //     "tHeadings": "Product Name"
+  //   },
+  //   {
+  //     "tHeadings": "Product Code"
+  //   },
+  //   {
+  //     "tHeadings": "Availability"
+  //   },
+  //   {
+  //     "tHeadings": "Product Price"
+  //   },
+  //   {
+  //     "tHeadings": "Star Ratings"
+  //   }
+  // ];
 
   //listFilter: string = 'cart';      //we have remove this variable for use in getter & setter properties 
   private _listFilter: string = '';
@@ -75,10 +74,8 @@ export class ProductListComponent implements OnInit {
     this._listFilter = value;   // we set the value in our backing variable
     // we add the code below
     console.log("In setter: ", value);
-    this.filteredProducts = this.performFilter(value);    
+    this.filteredProducts = this.performFilter(value);
   }
-
-  
 
   // create Arrow function, which filter the products array
   filteredProducts: IProduct[] = [];
@@ -87,13 +84,15 @@ export class ProductListComponent implements OnInit {
   //   this.productPageInfo.showImage= !this.productPageInfo.showImage;
   // }
 
-
+  productsHeadings: IProductHeader[] = [];
   products: IProduct[] = [];
   
   ngOnInit(): void {
+    // Set the Product Header
+    this.productsHeadings = this.productService.getProductsHeadings();
+
     // Set the product property
     this.products = this.productService.getProduct();
-
     // Set the filterProducts
     this.filteredProducts = this.products;
     

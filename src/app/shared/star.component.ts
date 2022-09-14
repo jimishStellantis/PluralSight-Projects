@@ -1,7 +1,4 @@
 import { Component, Input, OnChanges, Output, SimpleChanges,EventEmitter } from "@angular/core";
-
-
-
 @Component({
     selector: 'pm-star',
     templateUrl: './star.component.html',
