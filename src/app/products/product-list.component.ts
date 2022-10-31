@@ -1,19 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { IProduct, IProductHeader, IProductPage } from "./product.interface";
 import { ProductService } from "./product.service";
 
 @Component({
   selector: 'pm-products',
   templateUrl: './product-list.component.html',
-  // styles:[
-  //   'tHead {color: #337AB7;}'
-  // ]
   styleUrls: [
     './product-list.component.scss'  //we can add multiple stylesheets separated by commas
   ]
 })
 
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
   productPageInfo: IProductPage = {
     pageTitle: "Product List",
     imageWidth: 25,
@@ -56,13 +53,14 @@ export class ProductListComponent implements OnInit {
   private _listFilter: string = '';
 
   /**
+   * **********************Getters & Setters for filter the data ************************ */
+  /**
    * define getter with using get keywork followed by the name of property with parenthesis
   */
   get listFilter():string{    // we specify the proerty datatype i.e. :string
     // body of the getter includes the code to process the property value before returning it
     return this._listFilter;  // return the value of the backing variable
   }
-
   /**
    *  define the setter
       setter has NO return value
